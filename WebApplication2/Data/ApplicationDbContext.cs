@@ -13,6 +13,6 @@ namespace WebApplication2.Data
             : base(options)
         {
         }
-        public DbSet<WebApplication2.Models.ToDo> ToDo { get; set; }
+        public DbSet<WebApplication2.Models.Tasks> ToDo { get; set; }
     }
 }

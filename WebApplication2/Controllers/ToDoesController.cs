@@ -52,14 +52,14 @@ namespace WebApplication2.Controllers
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var task = await _context.ToDo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (task == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(task);
         }
 
         // GET: ToDoes/Create
@@ -73,15 +73,15 @@ namespace WebApplication2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ToDo toDo)
+        public async Task<IActionResult> Create(Tasks task)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(toDo);
+                _context.Add(task);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(task);
         }
 
         // GET: ToDoes/Edit/5
@@ -92,12 +92,12 @@ namespace WebApplication2.Controllers
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo.FindAsync(id);
-            if (toDo == null)
+            var task = await _context.ToDo.FindAsync(id);
+            if (task == null)
             {
                 return NotFound();
             }
-            return View(toDo);
+            return View(task);
         }
 
         // POST: ToDoes/Edit/5
@@ -105,9 +105,9 @@ namespace WebApplication2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ToDo toDo)
+        public async Task<IActionResult> Edit(int id, Tasks task)
         {
-            if (id != toDo.Id)
+            if (id != task.Id)
             {
                 return NotFound();
             }
@@ -116,12 +116,12 @@ namespace WebApplication2.Controllers
             {
                 try
                 {
-                    _context.Update(toDo);
+                    _context.Update(task);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ToDoExists(toDo.Id))
+                    if (!TaskExists(task.Id))
                     {
                         return NotFound();
                     }
@@ -132,7 +132,7 @@ namespace WebApplication2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(toDo);
+            return View(task);
         }
 
         // GET: ToDoes/Delete/5
@@ -143,14 +143,14 @@ namespace WebApplication2.Controllers
                 return NotFound();
             }
 
-            var toDo = await _context.ToDo
+            var task = await _context.ToDo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDo == null)
+            if (task == null)
             {
                 return NotFound();
             }
 
-            return View(toDo);
+            return View(task);
         }
 
         // POST: ToDoes/Delete/5
@@ -158,13 +158,13 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var toDo = await _context.ToDo.FindAsync(id);
-            _context.ToDo.Remove(toDo);
+            var task = await _context.ToDo.FindAsync(id);
+            _context.ToDo.Remove(task);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ToDoExists(int id)
+        private bool TaskExists(int id)
         {
             return _context.ToDo.Any(e => e.Id == id);
         }
