@@ -19,21 +19,6 @@ namespace WebApplication2.Controllers
             _context = context;
         }
 
-        //Сортировка по выполненным/невыполненным - 1 метод
-        //private IList<ToDo> _toDoList()
-        //{
-        //    var isAlreadyDone = _context.ToDo.OrderBy(e => e.isDone ? 0 : 1).ToList();
-        //    return isAlreadyDone;
-        //}
-        
-        //Сортировка по выполненным/невыполненным - 2 метод
-
-        //private IList<ToDo> GetToDos()
-        //{
-        //    var todos = _context.ToDo.Where(m => m.isDone == true).ToList();
-        //    return todos;
-        //}
-
         // GET: ToDoes
         public async Task<IActionResult> Index()
         {
